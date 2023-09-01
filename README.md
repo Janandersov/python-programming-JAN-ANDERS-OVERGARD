@@ -1,2 +1,8 @@
 ### Personal repo for the python programming course @ ITHS
-Containing Exercises, Code-Along, Labs and Explorations.
+#### Containing:
+- [Exercises](Exercises) 
+- [Code-Along](Code-Along) 
+- [Labs](Labs) 
+- [Explorations](Explorations)
+
+

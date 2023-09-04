@@ -2,6 +2,7 @@ import math
 
 x_1 = 3
 y_1 = 5
+
 x_2 = -2
 y_2 = 4
 

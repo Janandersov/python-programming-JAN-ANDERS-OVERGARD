@@ -11,3 +11,4 @@ cathetus_b_squared = hypotenuse_c_squared - cathetus_a_squared
 cathetus_b = math.sqrt(cathetus_b_squared)
 
 print(f"Cathetus b is{cathetus_b: .1f} length units!")
+

@@ -1,0 +1,12 @@
+import random
+
+dice_roll_values = []
+
+for i in range(10):
+    dice_roll = random.randint(1, 6)
+    dice_roll_values.append(dice_roll)
+
+dice_roll_values.sort()
+
+print(f"Maximum value: {dice_roll_values [9]}")
+print(f"Minimum value: {dice_roll_values [0]}")

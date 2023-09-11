@@ -18,4 +18,3 @@ while True:
     else:
         print(f"\nNumber {algorithm_guess} is too low. This was try number {number_of_tries}.")
         lowest_number = algorithm_guess + 1
-

@@ -1,3 +1,5 @@
 Hello world!
 
-This is an example file.
+This is an example file.JAN ANDERS TEST
+This should be on a new line
+this is a new line as well

@@ -2,14 +2,15 @@ import math
 import matplotlib.pyplot as plt
 
 
-# Main function, runs first.
 def main():
+    # Main function, runs first.
     print("Welcome to the pokemon classifier!\n")
     sort_datapoints()
     main_menu()
 
 
 def main_menu():
+    # Main menu for the user to choose what to do.
     print("What do you want to do?")
     print("1. Classify using testdata.")
     print("2. Classify using your own data.")
@@ -22,10 +23,13 @@ def main_menu():
             if 3 >= user_choice >= 1:
                 if user_choice == 1:
                     sort_testpoints()
+                    return_or_end()
                 elif user_choice == 2:
                     user_defined_points()
+                    return_or_end()
                 else:
                     plot_points()
+                    return_or_end()
 
                 return
         except ValueError:
@@ -34,7 +38,7 @@ def main_menu():
 
 
 def sort_datapoints():
-    # Read datapoints.txt and split data into correct lists.
+    # Read datapoints.txt and split/append data into correct lists.
     with open("data\\datapoints.txt") as file:
         datapoints = file.readlines()[1:]
 
@@ -50,7 +54,7 @@ def sort_datapoints():
 
 
 def sort_testpoints():
-    # Read testpoints.txt and split data into correct lists.
+    # Read testpoints.txt and split/append data into correct lists.
     with open("data\\testpoints.txt", "r") as file:
         testpoints = file.readlines()[1:]
 
@@ -83,7 +87,7 @@ def user_defined_points():
 def distance_between_points(width_list, height_list):
     # Looping trough test points.
     for x in range(len(width_list)):
-        # Lists tracks the smallest distances between points.
+        # Lists track the smallest distances between points.
         distances_to_pichu = []
         distances_to_pikachu = []
 
@@ -123,6 +127,28 @@ def plot_points():
     plt.scatter(pichu_width, pichu_height, color="red")
     plt.scatter(pikachu_width, pikachu_height, color="blue")
     plt.show()
+
+
+def return_or_end():
+    # Menu for going back to main menu or exit.
+    print("\nDo you want to return to the main menu or exit the program?")
+    print("1. Return to main menu.")
+    print("2. Exit.")
+
+    while True:
+        try:
+            user_choice = int(input("Make your choice (1-2): "))
+            print()
+            if 2 >= user_choice >= 1:
+                if user_choice == 1:
+                    main()
+                else:
+                    exit()
+
+                return
+        except ValueError:
+            pass
+        print("You have to make a valid choice.")
 
 
 # Initialize lists for datapoints and testpoints.

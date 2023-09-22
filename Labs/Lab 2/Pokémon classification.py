@@ -59,6 +59,7 @@ def sort_testpoints():
         width, height = map(float, clean_line.split(", "))
         test_width.append(width)
         test_height.append(height)
+    # Runs classification with testpoints.
     distance_between_points(test_width, test_height)
 
 
@@ -71,6 +72,7 @@ def user_defined_points():
             if width > 0 and height > 0:
                 test_width.append(width)
                 test_height.append(height)
+                # Runs classification with user defined points.
                 distance_between_points(test_width, test_height)
                 return
         except ValueError:
@@ -81,27 +83,36 @@ def user_defined_points():
 def distance_between_points(width_list, height_list):
     # Looping trough test points.
     for x in range(len(width_list)):
-        # Variables tracks the smallest distance between points.
-        smallest_pichu = float("inf")
-        smallest_pikachu = float("inf")
+        # Lists tracks the smallest distances between points.
+        distances_to_pichu = []
+        distances_to_pikachu = []
 
-        # Calculates distances to Pichu datapoints.
+        # Calculates distances to Pichu datapoints and appends to list.
         for y in range(len(pichu_width)):
             pichu_point_distance = math.sqrt(
                 (width_list[x] - float(pichu_width[y])) ** 2 + (height_list[x] - float(pichu_height[y])) ** 2)
-            smallest_pichu = min(smallest_pichu, pichu_point_distance)
+            distances_to_pichu.append(pichu_point_distance)
 
-        # Calculates distances to Pikachu datapoints.
+        # Calculates distances to Pikachu datapoints and appends to list.
         for y in range(len(pikachu_width)):
             pikachu_point_distance = math.sqrt(
                 (width_list[x] - float(pikachu_width[y])) ** 2 + (height_list[x] - float(pikachu_height[y])) ** 2)
-            smallest_pikachu = min(smallest_pikachu, pikachu_point_distance)
+            distances_to_pikachu.append(pikachu_point_distance)
 
-        # Compares distance to Pichu vs. Pikachu and prints the classification.
-        if smallest_pichu < smallest_pikachu:
+        # Sorts both distance lists and takes the 10 closest points
+        ten_closest_pichu = sorted(distances_to_pichu)[:10]
+        ten_closest_pikachu = sorted(distances_to_pikachu)[:10]
+
+        # Counts the number of closest points for pichu/pikachu
+        closest_to_pichu = sum(1 for distance in ten_closest_pichu if distance < min(ten_closest_pikachu))
+        closest_to_pikachu = sum(1 for distance in ten_closest_pikachu if distance < min(ten_closest_pichu))
+
+        # Checks if pichu or pikachu has the most points and classifies based on that.
+        if closest_to_pichu > closest_to_pikachu:
             print(f"Sample with (width, height): ({width_list[x]}, {height_list[x]}) classified as Pichu")
         else:
             print(f"Sample with (width, height): ({width_list[x]}, {height_list[x]}) classified as Pikachu")
+
     # Clearing lists with test points.
     test_width.clear()
     test_height.clear()
@@ -124,13 +135,5 @@ pikachu_height = []
 test_width = []
 test_height = []
 
-
+# Run main function
 main()
-'''
-sort_datapoints()
-plot_points()
-sort_testpoints()
-distance_between_points()
-user_defined_points(test_width, test_height)
-distance_between_points()
-'''

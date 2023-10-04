@@ -124,8 +124,12 @@ def distance_between_points(width_list, height_list):
 
 def plot_points():
     # Create scatterplot for each set of lists and displays them in different colors.
-    plt.scatter(pichu_width, pichu_height, color="red")
-    plt.scatter(pikachu_width, pikachu_height, color="blue")
+    plt.scatter([float(w) for w in pichu_width], [float(h) for h in pichu_height], color="red", label="Pichu")
+    plt.scatter([float(w) for w in pikachu_width], [float(h) for h in pikachu_height], color="blue", label="Pikachu")
+    plt.legend()
+    plt.xlabel("Width (cm)")
+    plt.ylabel("Height (cm)")
+    plt.title("Pokemon Classification")
     plt.show()
 
 

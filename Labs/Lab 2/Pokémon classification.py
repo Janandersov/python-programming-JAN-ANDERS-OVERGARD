@@ -87,32 +87,30 @@ def user_defined_points():
 def distance_between_points(width_list, height_list):
     # Looping trough test points.
     for x in range(len(width_list)):
-        # Lists track the smallest distances between points.
-        distances_to_pichu = []
-        distances_to_pikachu = []
+        # List to track the distances between points.
+        distances_to_testpoint = []
 
-        # Calculates distances to Pichu datapoints and appends to list.
+        # Calculates distances to Pichu datapoints and appends to list with label Pichu.
         for y in range(len(pichu_width)):
             pichu_point_distance = math.sqrt(
                 (width_list[x] - float(pichu_width[y])) ** 2 + (height_list[x] - float(pichu_height[y])) ** 2)
-            distances_to_pichu.append(pichu_point_distance)
+            distances_to_testpoint.append((pichu_point_distance, "Pichu"))
 
-        # Calculates distances to Pikachu datapoints and appends to list.
+        # Calculates distances to Pikachu datapoints and appends to list with label Pikachu.
         for y in range(len(pikachu_width)):
             pikachu_point_distance = math.sqrt(
                 (width_list[x] - float(pikachu_width[y])) ** 2 + (height_list[x] - float(pikachu_height[y])) ** 2)
-            distances_to_pikachu.append(pikachu_point_distance)
+            distances_to_testpoint.append((pikachu_point_distance, "Pikachu"))
 
-        # Sorts both distance lists and takes the 10 closest points
-        ten_closest_pichu = sorted(distances_to_pichu)[:10]
-        ten_closest_pikachu = sorted(distances_to_pikachu)[:10]
+        # Sorts the list with distances and takes the 10 closest points.
+        ten_closest_points = sorted(distances_to_testpoint)[:10]
 
         # Counts the number of closest points for pichu/pikachu
-        closest_to_pichu = sum(1 for distance in ten_closest_pichu if distance < min(ten_closest_pikachu))
-        closest_to_pikachu = sum(1 for distance in ten_closest_pikachu if distance < min(ten_closest_pichu))
+        count_pichu = sum(1 for distance, label in ten_closest_points if label == "Pichu")
+        count_pikachu = sum(1 for distance, label in ten_closest_points if label == "Pikachu")
 
         # Checks if pichu or pikachu has the most points and classifies based on that.
-        if closest_to_pichu > closest_to_pikachu:
+        if count_pichu > count_pikachu:
             print(f"Sample with (width, height): ({width_list[x]}, {height_list[x]}) classified as Pichu")
         else:
             print(f"Sample with (width, height): ({width_list[x]}, {height_list[x]}) classified as Pikachu")

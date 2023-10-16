@@ -71,7 +71,7 @@ class Circle(Shape):
         return f"{self.x_position},{self.y_position},{self.radius}"
 
     def __str__(self) -> str:
-        return (f"The shapes x-position is {self.x_position}, "
+        return (f"The circles x-position is {self.x_position}, "
                 f"its y-position is {self.y_position} and the radius is {self.radius}")
 
     # -------------------- Getters/setters (Circle) --------------------
@@ -116,6 +116,13 @@ class Rectangle(Shape):
         self.width = width
         self.height = height
 
+    def __repr__(self) -> str:
+        return f"{self.x_position}, {self.y_position}, {self.height}, {self.width}."
+
+    def __str__(self) -> str:
+        return (f"The rectangles x-position is {self.x_position}, "
+                f"its y-position is {self.y_position}, the width is {self.width} and the height is {self.height}")
+
     # -------------------- Getters/setters (Rectangle) --------------------
 
     @property
@@ -149,3 +156,13 @@ class Rectangle(Shape):
     @property
     def circumference(self) -> (int | float):
         return (self.width + self.height) * 2
+
+    # -------------------- Methods (Rectangle) --------------------
+    def is_square(self) -> bool:
+        return self.width == self.height
+
+    def is_inside_rectangle(self, x, y) -> bool:
+        if (self.x_position - self.width / 2 <= x <= self.x_position + self.width / 2
+                and self.y_position - self.height / 2 <= y <= self.y_position + self.height / 2):
+            return True
+        return False

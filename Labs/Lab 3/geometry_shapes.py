@@ -110,4 +110,42 @@ class Circle(Shape):
 
 
 class Rectangle(Shape):
-    ...
+
+    def __init__(self, x_position: int | float, y_position: int | float, width: int | float, height: int | float):
+        super().__init__(x_position, y_position)
+        self.width = width
+        self.height = height
+
+    # -------------------- Getters/setters (Rectangle) --------------------
+
+    @property
+    def width(self) -> (int | float):
+        return self._width
+
+    @width.setter
+    def width(self, value: int | float):
+        if not isinstance(value, (int, float)):
+            raise TypeError(f"Value has to be either int or float, not {type(value)}")
+        if value <= 0:
+            raise ValueError(f"Value has to be positive, not {value}")
+        self._width = value
+
+    @property
+    def height(self) -> (int | float):
+        return self._height
+
+    @height.setter
+    def height(self, value: int | float):
+        if not isinstance(value, (int | float)):
+            raise TypeError(f"Value has to be either int or float, not {type(value)}")
+        if value <= 0:
+            raise ValueError(f"Value has to be positive, not {value}")
+        self._height = value
+
+    @property
+    def area(self) -> (int | float):
+        return self.width * self.height
+
+    @property
+    def circumference(self) -> (int | float):
+        return (self.width + self.height) * 2

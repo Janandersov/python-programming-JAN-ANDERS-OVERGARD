@@ -47,6 +47,18 @@ class Shape:
     def __ge__(self, other) -> bool:
         return self.area >= other.area
 
+    # -------------------- translation method --------------------
+
+    def translate(self, x_value: (int | float), y_value: (int | float)):
+        if not isinstance(x_value, (int, float)):
+            raise TypeError(f"x value has to be either int or float, not {type(x_value)}")
+        self.x_position = x_value
+
+        if not isinstance(y_value, (int, float)):
+            raise TypeError(f"y value has to be either int or float, not {type(y_value)}")
+        self.y_position = y_value
+
+
 class Circle(Shape):
     ...
 

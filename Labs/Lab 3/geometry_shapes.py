@@ -1,5 +1,7 @@
 import math
 
+# -------------------- Shape class --------------------
+
 
 class Shape:
     def __init__(self, x_position: (int | float), y_position: (int | float)):
@@ -33,7 +35,7 @@ class Shape:
             raise TypeError(f"y position has to be either int or float, not {type(value)}")
         self._y_position = value
 
-    # -------------------- Overloading operators --------------------
+    # -------------------- Overloading operators (Shape) --------------------
 
     def __eq__(self, other) -> bool:
         return self.area == other.area
@@ -50,7 +52,7 @@ class Shape:
     def __ge__(self, other) -> bool:
         return self.area >= other.area
 
-    # -------------------- translation method --------------------
+    # -------------------- translation method (Shape) --------------------
 
     def translate(self, x_value: (int | float), y_value: (int | float)):
         if not isinstance(x_value, (int, float)):
@@ -60,6 +62,8 @@ class Shape:
         if not isinstance(y_value, (int, float)):
             raise TypeError(f"y value has to be either int or float, not {type(y_value)}")
         self.y_position = y_value
+
+# -------------------- Circle class --------------------
 
 
 class Circle(Shape):
@@ -107,6 +111,8 @@ class Circle(Shape):
         if not isinstance(y, (int, float)):
             raise TypeError(f"y value has to be either int or float, not {type(y)}")
         return (x - self.x_position) ** 2 + (y - self.y_position) ** 2 < self.radius ** 2
+
+# -------------------- Rectangle class --------------------
 
 
 class Rectangle(Shape):
